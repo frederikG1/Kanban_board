@@ -19,3 +19,7 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
 });
+
+// ---------- AUTH ----------
+import authRouther from "./routers/authRouter.js";
+app.use("/api", authRouther);
