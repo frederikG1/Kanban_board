@@ -1,5 +1,5 @@
-import type React from "react";
 import "./SignupForm.css";
+
 interface SignupFormProps {
   username: string;
   email: string;

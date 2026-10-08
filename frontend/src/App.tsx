@@ -8,12 +8,9 @@ export default function App() {
     <div>
       <Header />
 
-      <main style={{ padding: "2rem", maxWidth: "400px", margin: "0 auto" }}>
-        <AuthPage />
-      </main>
+      <AuthPage />
 
       <ToastContainer position="bottom-right" />
-      <ToastContainer />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import SignupForm from "../components/SignupForm";
 import LoginForm from "../components/LoginForm";
+import "./AuthPage.css";
 
 export default function AuthPage() {
   const [username, setUsername] = useState("");
@@ -42,6 +43,7 @@ export default function AuthPage() {
 
   const handleSubmitSignup = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     async function handleSignup() {
       try {
         const response = await fetch("/api/signup", {
@@ -72,9 +74,9 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="auth-container">
-      {isLogin ? (
-        <div>
+    <div className="flip-card">
+      <div className={`flip-card-inner ${isLogin ? "" : "flipped"}`}>
+        <div className="flip-card-face flip-card-front" inert={!isLogin}>
           <LoginForm
             username={username}
             password={password}
@@ -83,13 +85,15 @@ export default function AuthPage() {
             handleUsernameInput={(e) => setUsername(e.target.value)}
             handlePasswordInput={(e) => setPassword(e.target.value)}
           />
-          <p style={{ textAlign: "center", marginTop: "1rem" }}>
+          <p>
             Don't have an account?{" "}
-            <button onClick={() => setIsLogin(false)}>Sign up here</button>
+            <button type="button" onClick={() => setIsLogin(false)}>
+              Sign up here
+            </button>
           </p>
         </div>
-      ) : (
-        <div>
+
+        <div className="flip-card-face flip-card-back" inert={isLogin}>
           <SignupForm
             username={username}
             email={email}
@@ -100,12 +104,14 @@ export default function AuthPage() {
             handleEmailInput={(e) => setEmail(e.target.value)}
             handlePasswordInput={(e) => setPassword(e.target.value)}
           />
-          <p style={{ textAlign: "center", marginTop: "1rem" }}>
+          <p>
             Already have an account?{" "}
-            <button onClick={() => setIsLogin(true)}>Log in here</button>
+            <button type="button" onClick={() => setIsLogin(true)}>
+              Log in here
+            </button>
           </p>
         </div>
-      )}
+      </div>
     </div>
   );
 }
