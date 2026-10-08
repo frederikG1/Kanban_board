@@ -10,16 +10,16 @@ router.post("/signup", async (req, res) => {
 
   if (!username || !email || !password) {
     return res.status(400).send({
-      error: "Please fill in all fields",
+      errorMessage: "Please fill in all fields",
     });
   }
 
   const existingUser = db
-    .prepare(`SELECET * FROM users WHERE email = ?`)
+    .prepare(`SELECT * FROM users WHERE email = ?`)
     .get(email);
 
   if (existingUser) {
-    return res.status(400).send({ error: "Email already in use" });
+    return res.status(400).send({ errorMessage: "Email already in use" });
   }
 
   const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -28,7 +28,7 @@ router.post("/signup", async (req, res) => {
     `INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)`,
   ).run(username, email, hashedPassword);
 
-  res.status(201).send({ message: "User created!" });
+  res.status(201).send({ successMessage: "User created!" });
 });
 
 router.post("/login", async (req, res) => {
@@ -36,7 +36,7 @@ router.post("/login", async (req, res) => {
 
   if (!username || !password) {
     return res.status(400).send({
-      error: "Please enter username and password",
+      errorMessage: "Please enter username and password",
     });
   }
 
@@ -46,7 +46,7 @@ router.post("/login", async (req, res) => {
 
   if (!foundUser) {
     return res.status(400).send({
-      error: "User not found",
+      errorMessage: "User not found",
     });
   }
 
@@ -57,7 +57,7 @@ router.post("/login", async (req, res) => {
 
   if (!isPasswordCorrect) {
     return res.status(400).send({
-      error: "Wrong password",
+      errorMessage: "Wrong password",
     });
   }
 
@@ -66,7 +66,7 @@ router.post("/login", async (req, res) => {
     username: foundUser.username,
   };
 
-  res.status(200).send({ success: "Login succesful"});
+  res.status(200).send({ successMessage: "Login succesful"});
 });
 
 export default router;
