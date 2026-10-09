@@ -66,7 +66,24 @@ router.post("/login", async (req, res) => {
     username: foundUser.username,
   };
 
-  res.status(200).send({ successMessage: "Login succesful"});
+  res.status(200).send({ successMessage: "Login succesful" });
+});
+
+router.post("/logout", async (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(401).send({ errorMessage: "Logout failed" });
+    }
+    res.status(200).send({ successMessage: "Logout succesful" });
+  });
+});
+
+router.get("/me", async (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).send({ errorMessage: "You are not logged in" });
+  }
+
+  res.status(200).send({ user: req.session.user });
 });
 
 export default router;
