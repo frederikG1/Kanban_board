@@ -1,4 +1,14 @@
-import { createContext} from "react";
+import { createContext } from "react";
 
+export interface User {
+  username: string;
+}
 
-export const AuthContext = createContext(null)
+export interface AuthContextValue {
+  user: User | null;
+  loading: boolean;
+  login: (user: User) => void;
+  logout: () => Promise<void>;
+}
+
+export const AuthContext = createContext<AuthContextValue | null>(null);

@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import SignupForm from "../components/SignupForm";
 import LoginForm from "../components/LoginForm";
 import "./AuthPage.css";
+import { useAuth } from "../stores/useAuth";
 
 export default function AuthPage() {
   const [username, setUsername] = useState("");
@@ -10,6 +11,7 @@ export default function AuthPage() {
   const [email, setEmail] = useState("");
 
   const [isLogin, setIsLogin] = useState(true);
+  const { login } = useAuth();
   const handleSubmitLogin = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -24,8 +26,10 @@ export default function AuthPage() {
           body: JSON.stringify({ username, password }),
         });
         const data = await response.json();
+        console.log(data);
 
         if (response.ok) {
+          login(data.user);
           toast.success(data.successMessage, {
             position: "bottom-right",
           });
@@ -73,33 +77,6 @@ export default function AuthPage() {
     handleSignup();
   };
 
-  async function handleLogout() {
-    if (!confirm("Are you sure you want to log out?")) {
-      return;
-    }
-  try {
-    const response = await fetch("/api/logout", {
-      method: "POST",
-      credentials: "include",
-    });
-    const data = await response.json();
-
-    if (response.ok) {
-      toast.success(data.successMessage, {
-        position: "top-right",
-      });
-    } else {
-      toast.error(data.errorMessage, {
-        position: "top-right",
-      });
-    }
-  } catch (error) {
-    toast.error((error as Error).message); 
-  }
-}
-
-
-
   return (
     <div className="flip-card">
       <div className={`flip-card-inner ${isLogin ? "" : "flipped"}`}>
@@ -136,9 +113,6 @@ export default function AuthPage() {
             <button type="button" onClick={() => setIsLogin(true)}>
               Log in here
             </button>
-            {/* <button type="button" onClick={handleLogout}>
-              Log out here
-            </button> */}
           </p>
         </div>
       </div>
