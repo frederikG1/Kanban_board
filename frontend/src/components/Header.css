@@ -1,39 +1,57 @@
 .header {
-    width: 100%;
-    padding: 24px 0;
-    background: linear-gradient(135deg, #20232a, #61dafb);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  padding: 24px 0;
+  background: linear-gradient(135deg, #20232a, #61dafb);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .header-content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
 
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .header-logo {
-    width: 55px;
-    height: 55px;
-    transition: transform 0.3s ease;
+  width: 55px;
+  height: 55px;
+  transition: transform 0.3s ease;
 }
 
 .header-logo:hover {
-    transform: rotate(20deg);
+  transform: rotate(20deg);
 }
 
 .header h1 {
-    margin: 0;
-    color: white;
-    font-size: 28px;
-    font-weight: 700;
+  margin: 0;
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .header p {
-    margin: 4px 0 0;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 14px;
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+}
+
+.logout-btn {
+  margin-top: 1em;
+  margin-left: 1em;
+  padding: 0.25em 1.5em;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.logout-btn:hover,
+.logout-btn:focus {
+  box-shadow: 0 5px 15px 1px #61dafb;
 }

@@ -14,7 +14,6 @@ export default function App() {
     <div>
       <Header />
       <p>Board goes here</p>
-      <AuthPage />
     </div>
   );
 }

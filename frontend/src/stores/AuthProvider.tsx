@@ -37,9 +37,6 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 
       if (response.ok) {
         setUser(null);
-        toast.success(data.successMessage, {
-          position: "top-right",
-        });
       } else {
         toast.error(data.errorMessage, {
           position: "top-right",

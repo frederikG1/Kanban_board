@@ -17,8 +17,8 @@ export default function Header() {
       </div>
       <div>
         <h1>Kanban Board</h1>
-        <span>Welcome back, {user?.username}</span>
-        <button onClick={handleLogout}>Log out</button>
+        <span>Welcome back, {user?.username.toUpperCase()}</span>
+        <button className="logout-btn" onClick={handleLogout}>Log out</button>
   
       </div>
     </header>
