@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Draggable from "../stores/Draggable";
-import Droppable from "../stores/Droppable";
+import Draggable from "../components/Draggable";
+import Droppable from "../components/Droppable";
 import { DragDropProvider } from "@dnd-kit/react";
 import "./BoardPage.css";
 
