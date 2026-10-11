@@ -66,7 +66,9 @@ router.post("/login", async (req, res) => {
     username: foundUser.username,
   };
 
-  res.status(200).send({ successMessage: "Login succesful", user: { username } });
+  res
+    .status(200)
+    .send({ successMessage: "Login succesful", user: { username } });
 });
 
 router.post("/logout", async (req, res) => {

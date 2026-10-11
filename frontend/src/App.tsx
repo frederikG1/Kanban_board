@@ -1,8 +1,8 @@
 import "./App.css";
 import Header from "./components/Header";
-
 import AuthPage from "./pages/AuthPage";
 import { useAuth } from "./stores/useAuth";
+import BoardPage from "./pages/BoardPage";
 
 export default function App() {
   const { user, loading } = useAuth();
@@ -14,6 +14,7 @@ export default function App() {
     <div>
       <Header />
       <p>Board goes here</p>
+      <BoardPage />
     </div>
   );
 }

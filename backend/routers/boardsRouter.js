@@ -15,3 +15,5 @@ router.get("/columns", (req, res) => {
   
   res.status(200).send(columns);
 });
+
+export default router;
