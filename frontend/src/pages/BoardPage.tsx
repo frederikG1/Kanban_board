@@ -1,13 +1,17 @@
 import { useState } from "react";
-import Draggable from "../components/Draggable";
-import Droppable from "../components/Droppable";
 import { DragDropProvider } from "@dnd-kit/react";
 import "./BoardPage.css";
+import Columns from "../components/Columns";
+import type { ColumnData } from "../types";
 
 export default function BoardPage() {
-  const targets = ["A", "B", "C"];
-  const [target, setTarget] = useState<string | number | undefined>();
-  const draggable = <Draggable id="draggable">Drag me</Draggable>;
+  const [cardColumnId, setCardColumnId] = useState<string | number>(1);
+
+  const columns: ColumnData[] = [
+    { id: 1, title: "To do", position: 0 },
+    { id: 2, title: "In progress", position: 1 },
+    { id: 3, title: "Done", position: 2 },
+  ];
 
   return (
     <div className="board-content">
@@ -15,16 +19,14 @@ export default function BoardPage() {
         onDragEnd={(event) => {
           if (event.canceled) return;
 
-          setTarget(event.operation.target?.id);
+          const targetId = event.operation.target?.id;
+          if (targetId === undefined) return;
+          setCardColumnId(targetId);
+
+          
         }}
       >
-        {!target ? draggable : null}
-
-        {targets.map((id) => (
-          <Droppable key={id} id={id}>
-            {target === id ? draggable : `Droppable ${id}`}
-          </Droppable>
-        ))}
+        <Columns columns={columns} cardColumnId={cardColumnId} />
       </DragDropProvider>
     </div>
   );

@@ -3,16 +3,17 @@ import type { ReactNode } from "react";
 
 type DroppableProps = {
   id: string | number;
+  className?: string;
   children: ReactNode;
 };
 
-export default function Droppable({ id, children }: DroppableProps) {
+export default function Droppable({ id, className, children }: DroppableProps) {
   const { ref } = useDroppable({
     id,
   });
 
   return (
-    <div ref={ref} style={{ width: 300, height: 300 }}>
+    <div ref={ref} className={className}>
       {children}
     </div>
   );

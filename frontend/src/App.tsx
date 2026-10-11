@@ -4,6 +4,7 @@ import AuthPage from "./pages/AuthPage";
 import { useAuth } from "./stores/useAuth";
 import BoardPage from "./pages/BoardPage";
 
+
 export default function App() {
   const { user, loading } = useAuth();
   if (loading) return <p>Loading...</p>;
@@ -15,6 +16,7 @@ export default function App() {
       <Header />
       <p>Board goes here</p>
       <BoardPage />
+      
     </div>
   );
 }
