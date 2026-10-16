@@ -14,11 +14,19 @@ router.post("/signup", async (req, res) => {
     });
   }
 
-  const existingUser = db
+  const existingUserName = db
+    .prepare(`SELECT * FROM users WHERE username = ?`)
+    .get(username);
+
+  if (existingUserName) {
+    return res.status(400).send({ errorMessage: "Username already in use" });
+  }
+
+  const existingUserEmail = db
     .prepare(`SELECT * FROM users WHERE email = ?`)
     .get(email);
 
-  if (existingUser) {
+  if (existingUserEmail) {
     return res.status(400).send({ errorMessage: "Email already in use" });
   }
 
