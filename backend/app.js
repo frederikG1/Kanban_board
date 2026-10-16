@@ -30,6 +30,9 @@ app.get("/", (req, res) => {
 import authRouther from "./routers/authRouter.js";
 app.use("/api", authRouther);
 
+import boardsRouter from "./routers/boardsRouter.js";
+app.use("api", boardsRouter);
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
