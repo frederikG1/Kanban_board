@@ -31,7 +31,7 @@ import authRouther from "./routers/authRouter.js";
 app.use("/api", authRouther);
 
 import boardsRouter from "./routers/boardsRouter.js";
-app.use("api", boardsRouter);
+app.use("/api", boardsRouter);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

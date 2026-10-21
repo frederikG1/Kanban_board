@@ -31,4 +31,13 @@ db.exec(`CREATE TABLE IF NOT EXISTS columns (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP 
   )`);
 
+db.exec(`CREATE TABLE IF NOT EXISTS cards (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  column_id INTEGER NOT NULL REFERENCES columns(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  description TEXT,
+  position INTEGER NOT NULL DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )`);
+
 console.log("DB Setup complete");
