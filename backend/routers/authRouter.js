@@ -91,7 +91,7 @@ router.post("/logout", async (req, res) => {
 
 router.get("/me", async (req, res) => {
   if (!req.session.user) {
-    return res.status(401).send({ errorMessage: "You are not logged in" });
+    return res.status(200).send({ user: null });
   }
 
   res.status(200).send({ user: req.session.user });

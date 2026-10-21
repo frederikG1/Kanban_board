@@ -1,18 +1,20 @@
-import type React from "react";
-import type { ColumnData } from "../types";
+import type { ColumnData, CardData } from "../types";
 import Droppable from "./Droppable";
+import Card from "./Card";
 
-type ColumnsProps = {
+type ColumnProps = {
   column: ColumnData;
-  children?: React.ReactNode;
+  cards: CardData[];
 };
 
-export default function Column({ column, children }: ColumnsProps) {
+export default function Column({ column, cards }: ColumnProps) {
   return (
     <div className="column">
       <h2>{column.title}</h2>
       <Droppable id={column.id} className="column-cards">
-        {children}
+        {cards.map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
       </Droppable>
     </div>
   );
