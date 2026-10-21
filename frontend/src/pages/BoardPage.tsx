@@ -40,6 +40,9 @@ export default function BoardPage() {
         }}
       >
         <div className="columns">
+          <h2>
+            <span className="card-counter">{cards.length}</span>
+          </h2>
           {columns.map((column) => (
             <Column
               key={column.id}
